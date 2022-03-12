@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+  text-align: center;
+background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
+  color: #c1bccc;
+}
+h1 {
+  font-size: 45px;
+}
+h2 {
+  color: #885DF1;
+  font-size: 30px;
+}
+span {
+  color: #18d5e2;
+}
+span:hover {
+  color: red;
+}
+button {
+  color: black;
+  background: #FE7C00;
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#lapis:hover {
+  color: white;
+    background: red;
+}
+#papyrus:hover {
+  color: white;
+  background: green;
+}
+#scalpellus:hover {
+  color: white;
+  background: Blue;
+}
+h3 {
+  color: red;
+  font-size: 35px;
+}
+h4 {
+  text-decoration: underline;
+  color: #7ed321;
+  font-size: 28px;
+}
+
+</style>
+<body>
+    <h1>Welcome Fellow Players to this Game of......</h1>
+<h2><em>LAPIS 🪦, PARYRUS 🗒, SCALPELLUS ✂️</em></H2>
+<div>
+  <p>or in simpler terms, aka, <span><br><strong>SCISSORS, PAPER STONE<strong></br></span></p>
+  </div>
+  <p>MAKE YOUR CHOICE BELOW! (choose wisely)</p>
+  <div id="buttons">
+  <button id="lapis">LAPIS</button>
+    <button id="papyrus">PAPYRUS</button>
+    <button id="scalpellus">SCALPELLUS</button>
+  </div>
+  <h3>RESULTS</ h3>
+  <h4 id="results"></h4>
+  
+</body>
+<script>
+  // We'll create an object for the player and the computer.
+const player = {
+  currentChoice: null
+};
+const computer = {
+  currentChoice: null
+};
+
+// Start of the game functions
+function playGame(e) {
+  // From GA Project 1. 
+  // Compututer Choice
+  const choices = ["lapis", "papyrus", "scalpellus"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  computer.currentChoice = choices[randomIndex];
+
+// Defining Player Choice using its button ID to the array of CHOICES
+  if (e.target.id === "lapis") {
+    player.currentChoice = choices[0];
+  } else if (e.target.id === "papyrus") {
+    player.currentChoice = choices[1];
+  } else if (e.target.id === "scalpellus") {
+    player.currentChoice = choices[2];
+  }
+
+// Comparing the choices selected
+  // TIE
+  if (computer.currentChoice === player.currentChoice) {
+    document.getElementById("results").innerText = "It's a TIE. Player and computer both chose " + computer.currentChoice;
+  }
+
+  // Player Choose Lapis[0]
+  else if(player.currentChoice === choices[0]) {
+    if(computer.currentChoice === choices[1]) {
+      document.getElementbyId("results").innerText = "Sorry, you LOST. Computer Wins. Computer chose " + computer.currentChoice + " and Player chose " + player.currentChoice;
+    } else {
+      document.getElementById("results").innerText = "You WON. Computer Lost. Computer chose " + computer.currentChoice + " and Player chose " + player.currentChoice;
+    }
+  }
+  
+  // Player Choose Papyrus[1]
+  else if(player.currentChoice === choices[1]) {
+    if(computer.currentChoice === choices[2]) {
+      document.getElementbyId("results").innerText = "Sorry, you LOST. Computer Wins. Computer chose " + computer.currentChoice + " and Player chose " + player.currentChoice;
+    } else {
+      document.getElementById("results").innerText = "You WON. Computer Lost. Computer chose " + computer.currentChoice + " and Player chose " + player.currentChoice;
+    }
+  }
+  
+  // Player Choose Scalpellus
+  else if(player.currentChoice === choices[2]) {
+    if(computer.currentChoice === choices[0]) {
+      document.getElementById("results").innerText = "Sorry, you LOST. Computer Wins. Computer chose " + computer.currentChoice + " and Player chose " + player.currentChoice;
+    } else {
+      document.getElementById("results").innerText = "You WON. Computer Lost. Computer chose " + computer.currentChoice + " and Player chose " + player.currentChoice;
+    }
+  }
+}
+
+// Adding event listeners to the buttons
+document.getElementById("lapis").addEventListener("click", playGame);
+document.getElementById("papyrus").addEventListener("click", playGame);
+document.getElementById("scalpellus").addEventListener("click", playGame);
+  
+</script>
+</html>
